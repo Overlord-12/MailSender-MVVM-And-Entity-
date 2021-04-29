@@ -1,0 +1,105 @@
+﻿<Window x:Class="MailSender_MVVM_And_Entity_.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MailSender_MVVM_And_Entity_"
+        xmlns:vm ="clr-namespace:MailSenderMVVMAndEntity.ViewModel"
+        xmlns:rep ="clr-namespace:MailSender_MVVM_And_Entity_" xmlns:report="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="675.734" Width="472.283">
+    <Window.DataContext>
+        <vm:ViewMod></vm:ViewMod>
+    </Window.DataContext>
+    <Grid Margin="0,0,3.6,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TabControl HorizontalAlignment="Left" Height="626" Margin="0,10,0,0" VerticalAlignment="Top" Width="457">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="pack://siteoforigin:,,,/Resources/people.png" Height="24" RenderTransformOrigin="0.5,0.5" Width="67">
+
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="-1"/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="-179.661"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock>Пользователи</TextBlock>
+                    </StackPanel>
+
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name ="MailGrid" Height="441" Margin="0,0,0.2,0" VerticalAlignment="Top"/>
+                    <Button Content="Save" HorizontalAlignment="Left" Margin="40,511,0,0" VerticalAlignment="Top" Width="86" Height="26" Click="Button_Click" RenderTransformOrigin="0.541,0.212"/>
+                    <Button Content="Delete" x:Name="BtDelete" HorizontalAlignment="Left" Margin="250,511,0,0" VerticalAlignment="Top" Width="86" Height="26" Click="BtDelete_Click"/>
+
+                </Grid>
+
+
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="pack://siteoforigin:,,,/Resources/mail.png" Height="36" RenderTransformOrigin="0.5,0.5" Width="120">
+                            <Image.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="-1"/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="-179.004"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Image.RenderTransform>
+                        </Image>
+                        <TextBlock><Run Text="Отправка письма"/></TextBlock>
+                    </StackPanel>
+
+                </TabItem.Header>
+                <Grid Background="White" Margin="0,-26,0.2,24.4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Выбрать адресата" Margin="10,43,240.2,511"/>
+                    <ComboBox  x:Name="CbSenders_Copy" ItemsSource="{Binding mailAdrs}" SelectedItem="{Binding FromAdresses}" Margin="10,74,237.2,484"/>
+                    <Label Content="Выбрать получателя" Width="300px" Margin="10,101,141.2,449"/>
+                    <ComboBox x:Name="СbRepcient"  SelectedItem="{Binding MailAdr}" Margin="13,136,234.2,422"/>
+                    <Label Content="Выбрать smtp-сервер" Margin="10,176,237.2,378"/>
+                    <ComboBox x:Name="CbSmtp" ItemsSource="{Binding SmtpServers}" SelectedItem="{Binding Server}" Margin="10,207,237.2,352"/>
+                    <Label Content="Тема письма" Margin="13,0,234.2,249" Height="26" VerticalAlignment="Bottom" RenderTransformOrigin="0.491,-0.162"/>
+                    <TextBox x:Name="MailTopic1" Width="300px" Margin="10,0,141.2,217.6" Height="20" VerticalAlignment="Bottom" Text="{Binding MailTopic}" />
+
+                    <Label Content="Контент письма" Width="300px" Margin="10,367,141.2,186"/>
+                    <TextBox x:Name="MailContent" Margin="10,399,114.2,56" Text="{Binding MailContent}" />
+                    <Button Content="Отправить" Command="{Binding SendCommand}" Margin="174,537,202.2,24"/>
+                    <Label Content="Сколько писем отправить" Margin="13,233,234.2,321"/>
+                    <TextBox Text="{Binding QuantityMail}" Margin="13,264,234.2,293" TextWrapping="Wrap"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Отчеты">
+                <WindowsFormsHost>
+                    
+                </WindowsFormsHost>
+            </TabItem>
+            
+
+
+
+
+
+
+
+
+        </TabControl>
+
+    </Grid>
+</Window>
